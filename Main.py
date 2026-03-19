@@ -14,7 +14,7 @@ while True:
     print("6 - Listar Ordens")
     print("7 - Remover Cliente")
     print("8 - Remover Veículo")
-    print("9 - Remover Ordem")
+    print("9 - Remover Ordem de Serviço")
     print("10 - Sair\n")
 
     opcao = input("Escolha: ")

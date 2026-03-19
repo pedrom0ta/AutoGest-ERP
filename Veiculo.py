@@ -6,6 +6,7 @@ class Veiculo:
         self.placa = placa
         self.ano = ano
         self.cliente = cliente
+        self.ordemdeservico = []
 
     def mostrar_dados(self):
         print(f"ID: {self.id}")
