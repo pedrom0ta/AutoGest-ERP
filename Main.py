@@ -5,7 +5,7 @@ sistema = Sistema()
 print("\n-=- AutoGest ERP Iniciado -=-\n")
 
 while True:
-
+    print("\n========== MENU ==========\n")
     print("1 - Cadastrar Cliente")
     print("2 - Cadastrar Veículo")
     print("3 - Cadastrar Ordem de Serviço")
@@ -15,7 +15,10 @@ while True:
     print("7 - Remover Cliente")
     print("8 - Remover Veículo")
     print("9 - Remover Ordem de Serviço")
-    print("10 - Sair\n")
+    print("10 - Atualizar Cliente")
+    print("11 - Atualizar Veículo")
+    print("12 - Atualizar Ordem de Serviço")
+    print("0 - Sair\n")
 
     opcao = input("Escolha: ")
 
@@ -43,6 +46,21 @@ while True:
     elif opcao == "8":
         sistema.remover_veiculo()
 
+    elif opcao == "9":
+        sistema.remover_servico()
+
     elif opcao == "10":
+        sistema.atualizar_cliente()
+
+    elif opcao == "11":
+        sistema.atualizar_veiculo()
+
+    elif opcao == "12":
+        sistema.atualizar_servico()
+        
+    elif opcao == "0":
         print("\nEncerrando...\n")
         break
+
+    else:
+        print("\nOpção inválida!\n")

@@ -13,10 +13,22 @@ class Sistema:
     def cadastrar_cliente(self):
         
         id = len(self.clientes) + 1
+        
         nome = input("Nome: ")
-        cpf = input("Cpf: ")
-        telefone = input("Telefone: ")
+        while nome == "":
+            print("Nome não pode ser vazio!")
+            nome = input("Nome: ")
 
+        cpf = input("Cpf: ")
+        while cpf == "":
+            print("CPF não pode ser vazio!")
+            cpf = input("Cpf: ")
+
+        telefone = input("Telefone: ")
+        while telefone == "":
+            print("Telefone não pode ser vazio!")
+            telefone = input("Telefone: ")
+            
         cliente = Cliente(id, nome, cpf, telefone)
         
         self.clientes.append(cliente)
@@ -58,9 +70,8 @@ class Sistema:
 
                     print("\nVeículo cadastrado!\n")
                     return
-                else:
-                    print("\nCliente não encontrado!\n")
-                    break
+        
+        print("\nCliente não encontrado!\n")        
 
     #Cadastrar Serviços
     def cadastrar_servico(self):
@@ -99,7 +110,8 @@ class Sistema:
                 status = input("Status: ")
                 id = len(self.ordemdeservico) + 1
 
-                cliente = veiculo.cliente
+                veiculo = veiculos
+                cliente = veiculos.cliente
 
                 servico = OrdemDeServico(id, descricao, valor, status, veiculo, cliente)
                 
@@ -193,12 +205,97 @@ class Sistema:
                 self.veiculos.remove(veiculo)
                 print("\nVeículo removido!\n")
                 return
-    
+
+        print("\nVeículo não encontrado!\n")
+
     def remover_servico(self):
+        
         if not self.ordemdeservico:
             print("Não há serviços cadastrados!")
             return
     
         print("-=- Serviços Cadastrados -=-\n")
-        for servicos in self.ordemdeservico:
-            servicos
+        
+        for servico in self.ordemdeservico:
+            print(f"ID {servico.id} - {servico.descricao}")
+        
+        pedir_id_servico = int(input("\nDigite o ID do serviço que deseja remover: "))
+        
+        for servico in self.ordemdeservico:
+            if pedir_id_servico == servico.id:
+                self.ordemdeservico.remove(servico)
+                
+                if servico in servico.veiculo.ordemdeservico:
+                    servico.veiculo.ordemdeservico.remove(servico)
+                    
+                print("\nServiço removido!\n")
+                return
+        
+        print("\nServiço não encontrado!\n")
+    
+    def atualizar_cliente(self):
+
+        if not self.clientes:
+            print("\nNenhum cliente cadastrado!\n")
+            return
+        
+        print("\n-=- Clientes -=-\n")
+        for cliente in self.clientes:
+            print(f"ID {cliente.id} - {cliente.nome}")
+        
+        id_busca = int(input("\nDigite o ID do cliente: "))
+
+        for cliente in self.clientes:
+            if cliente.id == id_busca:
+                cliente.nome = input("Novo nome: ")
+                cliente.cpf = input("Novo CPF: ")
+                cliente.telefone = input("Novo telefone: ")
+                
+                print("\nCliente atualizado!\n")
+                return
+        
+        print("\nCliente não encontrado!\n")
+
+    def atualizar_veiculo(self):
+
+        if not self.veiculos:
+            print("\nNenhum veículo cadastrado!\n")
+            return
+
+        for veiculo in self.veiculos:
+            print(f"ID {veiculo.id} - {veiculo.modelo}")
+
+        id_busca = int(input("\nDigite o ID do veículo: "))
+
+        for veiculo in self.veiculos:
+            if veiculo.id == id_busca:
+                veiculo.modelo = input("Novo modelo: ")
+                veiculo.placa = input("Nova placa: ")
+                veiculo.ano = int(input("Novo ano: "))
+
+                print("\nVeículo atualizado!\n")
+                return
+
+        print("\nVeículo não encontrado!\n")
+
+    def atualizar_servico(self):
+
+        if not self.ordemdeservico:
+            print("\nNenhum serviço cadastrado!\n")
+            return
+
+        for servico in self.ordemdeservico:
+            print(f"ID {servico.id} - {servico.descricao}")
+
+        id_busca = int(input("\nDigite o ID do serviço: "))
+
+        for servico in self.ordemdeservico:
+            if servico.id == id_busca:
+                servico.descricao = input("Nova descrição: ")
+                servico.valor = float(input("Novo valor: "))
+                servico.status = input("Novo status: ")
+
+                print("\nServiço atualizado!\n")
+                return
+
+        print("\nServiço não encontrado!\n")
