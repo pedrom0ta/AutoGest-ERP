@@ -299,3 +299,12 @@ class Sistema:
                 return
 
         print("\nServiço não encontrado!\n")
+    
+    def listar_tudo_polimorfismo(self):
+        print("\n-=- LISTA TOTAL -=-\n")
+
+        tudo = self.clientes + self.veiculos + self.ordemdeservico
+
+        for obj in tudo:
+            obj.mostrar_dados()
+            print("----------------")

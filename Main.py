@@ -18,6 +18,7 @@ while True:
     print("10 - Atualizar Cliente")
     print("11 - Atualizar Veículo")
     print("12 - Atualizar Ordem de Serviço")
+    print("13 - Listar Tudo")
     print("0 - Sair\n")
 
     opcao = input("Escolha: ")
@@ -57,10 +58,13 @@ while True:
 
     elif opcao == "12":
         sistema.atualizar_servico()
+    
+    elif opcao == "13":
+        sistema.listar_tudo()
         
     elif opcao == "0":
         print("\nEncerrando...\n")
         break
-
+    
     else:
         print("\nOpção inválida!\n")
